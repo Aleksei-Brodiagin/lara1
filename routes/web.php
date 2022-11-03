@@ -16,7 +16,9 @@ use App\Models\User;
 */
 
 Route::get('/', function () {
-    return view('welcome')->with('users', User::all());
+    return view('welcome')
+        ->with('users', User::all())
+        ->with('title', 'Welcome');
 });
 
 Route::get('/show', [PostController::class, 'show']);
