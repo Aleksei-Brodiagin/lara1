@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 
@@ -17,3 +18,5 @@ use App\Models\User;
 Route::get('/', function () {
     return view('welcome')->with('users', User::all());
 });
+
+Route::get('/show', [PostController::class, 'show']);
