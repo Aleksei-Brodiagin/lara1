@@ -3,6 +3,8 @@
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
+use App\Models\Chapter;
+use App\Models\Theme;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +21,19 @@ Route::get('/', function () {
     return view('welcome')
         ->with('users', User::all())
         ->with('title', 'Welcome');
-});
+})
+->name('welcome');
 
-Route::get('/show', [PostController::class, 'show']);
+Route::get('/forum', function () {
+    return view('forum')
+        ->with('chapters', Chapter::all())
+        ->with('title', 'Forum');
+})
+->name('forum');
+
+Route::get('/themes/{theme}', function(Theme $theme) {
+    return view('theme')
+        ->with('title', $theme->title)
+        ->with('messages', $theme->messages);
+})
+->name('themes');
